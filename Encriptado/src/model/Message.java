@@ -12,7 +12,7 @@ public class Message {
 	public void setMessage(byte[] message) {
 		Message = message;
 	}
-
+	
 	public String getPassword() {
 		return password;
 	}

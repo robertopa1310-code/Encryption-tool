@@ -14,10 +14,9 @@ import java.util.Scanner;
  */
 public class Encripter {
 	
-	public byte[] encrypter(String text,String password) throws Exception {
-		byte[] sinCifrar = text.getBytes("UTF-8");
+	public byte[] encrypter(byte[] contenido,String password) throws Exception {
 		Cipher aes = obtenerCipher(true,password);
-		byte[] cifrado = aes.doFinal(sinCifrar);
+		byte[] cifrado = aes.doFinal(contenido);
 		
 		return cifrado;
 	}
@@ -30,10 +29,6 @@ public class Encripter {
 		
 		String word = new String(sinccifrar,"UTF-8");
 		
-		if(word.isEmpty() || word == null) {
-			word = "Incorrecto";
-		}
-		
 		return word;
 	}
 	
@@ -41,7 +36,6 @@ public class Encripter {
 		final MessageDigest Digest = MessageDigest.getInstance("SHA-256");
 		Digest.update(password.getBytes("UTF-8"));
 		SecretKeySpec Key = new SecretKeySpec(Digest.digest(), 0, 16, "AES");
-		
 		Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
 		if(Opcion) {
 			aes.init(Cipher.ENCRYPT_MODE, Key);
