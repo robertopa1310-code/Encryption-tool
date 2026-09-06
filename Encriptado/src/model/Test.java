@@ -1,42 +1,44 @@
 package model;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Test {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
+		
+		File f1 = new File("D:\\workspace java\\Ejercicios_java\\src\\fichero_binario_repaso\\ProyectosJava\\88481ab8-db37-40ed-a6dd-01085df91be2.jpg");
 		Scanner sc = new Scanner(System.in);
-		Encripter Encrypted = new Encripter();
-		Message message = new Message();
-		boolean Exit = false;
-		while(Exit == false) {
-			System.out.println("What do you want to do:");
-			System.out.println("1)Encrypt");
-			System.out.println("2)Decrypt");
-			System.out.println("3)Exit");
+		Write w = new Write(f1);
+		
+		boolean exit = true;
+		
+		while(exit) {
+			System.out.println("Que vas hacer");
+			System.out.println("1)Encriptar");
+			System.out.println("2)Decriptar");
+			System.out.println("");
+			System.out.print("Decide: ");
 			int eleccion = Integer.parseInt(sc.nextLine());
-			
-			if(eleccion == 1) {
-				
-				System.out.println("Give me the text to encrypt");
-				String texttoencrypt = sc.nextLine();
-				System.out.println("Dame la constraseña para cifrar");
+			System.out.println("");
+			switch(eleccion) {
+			case 1:
+				System.out.println("Dime una contraseña para encriptar");
+				w.WriteEncriptArchive(f1.getAbsolutePath(),sc.nextLine());
+				break;
+			case 2:
+				System.out.println("Dime la ruta del archivo");
+				String ruta = sc.nextLine();
+				System.out.println("Dime la contra del archivo");
 				String password = sc.nextLine();
-				System.out.println(Encrypted.encrypter(texttoencrypt, password));
-				message.setMessage(Encrypted.encrypter(texttoencrypt, password));
-				
-			}else if(eleccion == 2) {
-				
-				System.out.println("Give me the password");
-				String password = sc.nextLine();
-				System.out.println(Encrypted.Decripter(message.getMessage(), password));
-				
-			}else if(eleccion == 3) {
-				Exit = true;
+				w.decryption(password,ruta);
+				break;
+			default:
+				System.out.println("No existe");
 			}
-			
 		}
+		
 		
 	}
 

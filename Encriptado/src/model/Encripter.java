@@ -21,15 +21,13 @@ public class Encripter {
 		return cifrado;
 	}
 	
-	public String Decripter(byte[] cifrado,String password) throws Exception {
+	public byte[] Decripter(byte[] cifrado,String password) throws Exception {
 		
 		Cipher aes = obtenerCipher(false, password);
 		
 		byte[] sinccifrar = aes.doFinal(cifrado);
 		
-		String word = new String(sinccifrar,"UTF-8");
-		
-		return word;
+		return sinccifrar;
 	}
 	
 	private Cipher obtenerCipher(boolean Opcion,String password) throws Exception {

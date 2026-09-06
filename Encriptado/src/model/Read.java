@@ -6,20 +6,17 @@ import java.io.FileNotFoundException;
 
 public class Read {
 	
-	private File file;
-	
-	public Read(File file) {
+	public Read() {
 		super();
-		this.file = file;
 	}
 
-
-
-	public byte[] readFile() {
+	
+	
+	public byte[] readFile(String path) {
 		
-		byte[] byteRead = new byte[1024];
+		byte[] byteRead = null;
 		
-		try(FileInputStream fis = new FileInputStream(file)) {
+		try(FileInputStream fis = new FileInputStream(path)) {
 			
 			
 			byteRead = fis.readAllBytes();
