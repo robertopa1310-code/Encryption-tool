@@ -8,9 +8,9 @@ public class Test {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		File f1 = new File("D:\\workspace java\\Ejercicios_java\\src\\fichero_binario_repaso\\ProyectosJava\\88481ab8-db37-40ed-a6dd-01085df91be2.jpg");
+		File f1 = new File("D:\\workspace java\\Ejercicios_java\\src\\fichero_binario_repaso\\ProyectosJava\\Encripted88481ab8-db37-40ed-a6dd-01085df91be2.jpg");
 		Scanner sc = new Scanner(System.in);
-		Write w = new Write(f1);
+		Write w = new Write();
 		
 		boolean exit = true;
 		
@@ -32,13 +32,12 @@ public class Test {
 				String ruta = sc.nextLine();
 				System.out.println("Dime la contra del archivo");
 				String password = sc.nextLine();
-				w.decryption(password,ruta);
+				w.decryptionArchive(password,ruta);
 				break;
 			default:
 				System.out.println("No existe");
 			}
 		}
-		
 		
 	}
 

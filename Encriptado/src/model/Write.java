@@ -5,19 +5,17 @@ import java.io.FileOutputStream;
 
 public class Write {
 	
-	private File file;
 	private Encripter enc = new Encripter();
 	
-	public Write(File files) {
+	public Write() {
 		super();
-		this.file = files;
 	}
-
+	
 	public void WriteEncriptArchive(String path,String password) {
 		
-		try(FileOutputStream fos = new FileOutputStream(PathandFile(file.getAbsolutePath(),true))) {
+		try(FileOutputStream fos = new FileOutputStream(PathandFile(path,true))) {
 			Read read = new Read();
-			System.out.println(PathandFile(file.getAbsolutePath(),true));
+			System.out.println(PathandFile(path,true));
 			fos.write(enc.encrypter(read.readFile(path), password));
 			
 		}catch (Exception e) {
@@ -27,7 +25,7 @@ public class Write {
 		
 	}
 	
-	public void decryption(String password,String path) throws Exception {
+	public void decryptionArchive(String password,String path) throws Exception {
 		
 		Read read = new Read();
 		
@@ -44,14 +42,19 @@ public class Write {
 		
 	}
 	
+	private String NameChecker (String path) {
+		String[] Text = path.split("Encripted|Decrip|\\\\");
+		return Text[Text.length-1];
+	}
+	
 	private String PathandFile(String path,boolean decision) {
 		
 		String[] Text = path.split("\\\\");
 		String Name = "";
 		if(decision) {
-			Name = "Encripted"+Text[Text.length-1];
+			Name = "Encripted"+NameChecker(path);
 		}else {
-			Name = "Decrip"+Text[Text.length-1];
+			Name = "Decrip"+NameChecker(path);
 		}
 		
 		Text[Text.length-1] = Name;
