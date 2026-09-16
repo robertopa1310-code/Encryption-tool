@@ -11,7 +11,7 @@ public class Write {
 		super();
 	}
 	
-	public void WriteEncriptArchive(String path,String password) {
+	public void WriteEncriptArchive(String path,String password) throws Exception {
 		
 		try(FileOutputStream fos = new FileOutputStream(PathandFile(path,true))) {
 			Read read = new Read();
@@ -37,9 +37,6 @@ public class Write {
 			// TODO: handle exception
 			System.out.println(e);
 		}
-		
-		
-		
 	}
 	
 	private String NameChecker (String path) {

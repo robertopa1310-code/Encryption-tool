@@ -10,12 +10,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controller.Checking;
+import Controller.Methods;
+
 public class InitialView extends JFrame {
+	
+	private Checking check = new Checking();
 	
 	private String[] text = {
 		"Encript","Decript"	
@@ -42,7 +49,9 @@ public class InitialView extends JFrame {
 		upPanelSetting();
 		downPanelSettings();
 		leftSideSettings();
-		
+		manager m1 = new manager();
+		ButtonIntroduceFile.addActionListener(m1);
+		Accept.addActionListener(m1);
 		
 		pack();
 		setVisible(true);
@@ -69,13 +78,33 @@ public class InitialView extends JFrame {
 	
 	
 	private class manager implements ActionListener {
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			if(e.getSource().equals(Accept)) {
+				if(check.CheckingText(TextPasswordInput.getText().strip()) && check.CheckingText(ArchivePath.getText().strip())) {
+					int Correct = JOptionPane.showConfirmDialog(null, "this password is correct "+TextPasswordInput.getText());
+					if(Correct == 0) {
+						try {
+							Methods me = new Methods(text[decision.getSelectedIndex()], ArchivePath.getText(), TextPasswordInput.getText().strip());
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(null, "Error when trying to take the path or the password.","Error",JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "fail text","Error",JOptionPane.ERROR_MESSAGE);
+				}
+			}else if(e.getSource().equals(ButtonIntroduceFile)) {
+				JFileChooser choose = new JFileChooser();
+				int options = choose.showOpenDialog(InitialView.this);
+				if(options == JFileChooser.APPROVE_OPTION) {
+					ArchivePath.setText(""+choose.getSelectedFile());
+				}
+				
+			}
 		}
-		
 	}
 	
 }
