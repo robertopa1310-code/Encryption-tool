@@ -11,7 +11,8 @@ public class Methods {
 		if(options.equalsIgnoreCase("Encript")){
 			System.out.println(options);
 			Encript en = new Encript(path, password);
-		}else {
+		}else if(options.equalsIgnoreCase("Decript")) {
+			System.out.println(options);
 			Decript de = new Decript(path, password);
 		}
 	}

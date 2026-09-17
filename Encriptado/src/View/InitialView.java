@@ -87,6 +87,7 @@ public class InitialView extends JFrame {
 					int Correct = JOptionPane.showConfirmDialog(null, "this password is correct "+TextPasswordInput.getText());
 					if(Correct == 0) {
 						try {
+							System.out.println(text[decision.getSelectedIndex()]);
 							Methods me = new Methods(text[decision.getSelectedIndex()], ArchivePath.getText(), TextPasswordInput.getText().strip());
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
@@ -98,6 +99,7 @@ public class InitialView extends JFrame {
 				}
 			}else if(e.getSource().equals(ButtonIntroduceFile)) {
 				JFileChooser choose = new JFileChooser();
+				choose.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				int options = choose.showOpenDialog(InitialView.this);
 				if(options == JFileChooser.APPROVE_OPTION) {
 					ArchivePath.setText(""+choose.getSelectedFile());
