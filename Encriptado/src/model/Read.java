@@ -1,18 +1,12 @@
 package model;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 class Read {
-	
-	public Read() {
-		super();
-	}
 
 	
 	
-	public byte[] readFile(String path) {
+	public static byte[] readFile(String path) {
 		
 		byte[] byteRead = null;
 		

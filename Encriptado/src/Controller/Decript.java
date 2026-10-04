@@ -4,15 +4,13 @@ import model.Write;
 
 class Decript {
 	
-	private Write write = new Write();
-	
 	public Decript(String path,String password) throws Exception {
 		super();
 		DecriptFile(path, password);
 	}
 	
 	private void DecriptFile(String path,String password) throws Exception {
-		write.decryptionArchive(password, path);
+		Write.decryptionArchive(password, path);
 	}
 	
 }
